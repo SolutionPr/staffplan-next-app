@@ -21,9 +21,11 @@ function Navbar() {
             </Link>
           </li>
           <li>
+          <Link to="/project">
             <a className="font-sans text-[16px] font-[400] leading-[24px] text-left text-white py-[6px] px-[15px] mr-[15px] rounded-[8px] block hover:bg-[#31425F]" href="">
               Projects
             </a>
+            </Link>
           </li>
           <li>
             <a className="font-sans text-[16px] font-[400] leading-[24px] text-left text-white py-[6px] px-[15px] mr-[15px] rounded-[8px] block" href="">
