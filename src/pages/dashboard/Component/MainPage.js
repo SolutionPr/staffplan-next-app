@@ -4,11 +4,14 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import arc from "../../../assets/images/archieve.png";
 import { FiPlus } from "react-icons/fi";
 import AddProject from "../../modal/AddProject";
+
 const StaffPlan = () => {
   const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
-  const [open, setOpen] = React.useState(false);
-  const [defModal, setDefaultModal] = React.useState("newProject");
+  const [open, setOpen] = useState(false);
+  const [defModal, setDefaultModal] = useState("newProject");
+
   const handleOpen = () => setOpen(true);
+
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
   const weeks = ["W1", "W2", "W3", "W4"];
   const monthsToShow = 4;
@@ -107,7 +110,7 @@ const StaffPlan = () => {
           <table>
             <thead className="">
               <tr>
-                <th className="text-left align-top w-[100px] max-w-[100px] max-w-[100px]  border-b border-[#d5d5d5] px-[15px] py-[15px] min-w-[90px]">
+                <th className="text-left align-top w-[100px] max-w-[100px] border-b border-[#d5d5d5] px-[15px] py-[15px] min-w-[90px]">
                   <span className="text-[14px] font-[400] leading-[17px] text-left text-[#23324C] cursor-pointer">
                     <div style={{ display: "flex", alignItems: "center" }} onClick={handleOpen}>
                       <span>
@@ -117,11 +120,10 @@ const StaffPlan = () => {
                     </div>
                   </span>
                 </th>
-                <th className="text-left align-top w-[100px] max-w-[100px] max-w-[100px] px-[15px] py-[15px]">
-                  <span className="text-[14px] font-[400] leading-[17px] text-left text-[#23324C]">Project </span>
+                <th className="text-left align-top w-[100px] max-w-[100px] px-[15px] py-[15px]">
+                  <span className="text-[14px] font-[400] leading-[17px] text-left text-[#23324C]">Project</span>
                 </th>
-                <th className="align-top px-[15px] py-[15px]  w-[100px] max-w-[100px] max-w-[100px]">
-                  {" "}
+                <th className="align-top px-[15px] py-[15px] w-[100px] max-w-[100px]">
                   <button onClick={handlePrevMonth} className="p-2 bg-[none] rounded-full">
                     <MdKeyboardArrowLeft size={22} />
                   </button>
@@ -130,7 +132,7 @@ const StaffPlan = () => {
                   weeks.map((week, weekIndex) => (
                     <th key={`${month}-${week}`} className="text-[14px] font-[400] leading-[17px] text-center text-[#23324C] align-center">
                       {week} <br />
-                      {week == "W1" ? month : ""}
+                      {week === "W1" ? month : ""}
                     </th>
                   ))
                 )}
@@ -151,7 +153,7 @@ const StaffPlan = () => {
                         {projectIndex === 0 && (
                           <td
                             rowSpan={client.projects.length}
-                            className="align-top cursor-pointer w-[100px] max-w-[100px] max-w-[100px] border-t border-[#d5d5d5] px-[15px] py-[15px] text-[14px] font-[400] leading-[17px] text-left text-[#23324C] align-top px-[15px] py-[15px]"
+                            className="align-top cursor-pointer w-[100px] max-w-[100px] border-t border-[#d5d5d5] px-[15px] py-[15px] text-[14px] font-[400] leading-[17px] text-left text-[#23324C]"
                           >
                             <div style={{ display: "flex", alignItems: "center" }}>
                               <span>
@@ -161,10 +163,10 @@ const StaffPlan = () => {
                             </div>
                           </td>
                         )}
-                        <td className="text-[14px] font-[700] w-[100px] max-w-[100px] max-w-[100px] leading-[17px] text-left text-[#23324C] align-top px-[15px] py-[15px] ">
+                        <td className="text-[14px] font-[700] w-[100px] max-w-[100px] leading-[17px] text-left text-[#23324C] align-top px-[15px] py-[15px]">
                           {project.name}
                         </td>
-                        <td className="text-[14px] font-[400] w-[100px] max-w-[100px] max-w-[100px] leading-[17px] text-left text-[#23324C] align-top px-[15px] py-[15px]">
+                        <td className="text-[14px] font-[400] w-[100px] max-w-[100px] leading-[17px] text-left text-[#23324C] align-top px-[15px] py-[15px]">
                           <div className="flex flex-col items-center">
                             <span className="mt-[4px]">Signed</span>
                             <br />
@@ -174,13 +176,14 @@ const StaffPlan = () => {
                         {months.slice(currentMonthIndex, currentMonthIndex + monthsToShow).flatMap((month, monthIndex) =>
                           weeks.map((week, weekIndex) => (
                             <React.Fragment key={`${month}-${weekIndex}`}>
-                              <td className="align-top px-[15px] py-[15px] w-[40px] max-w-[40px] max-w-[40px]">
+                              <td className="align-top px-[15px] py-[15px] w-[40px] max-w-[40px]">
                                 <div className="flex flex-col items-center">
                                   <input
                                     style={{
                                       boxShadow: "rgba(0, 0, 0, 0.3) 0px 1px 1px inset",
+                                      padding:"0px"
                                     }}
-                                    type="text"
+                                    type="number"
                                     value={project.signed[monthIndex * weeks.length + weekIndex]}
                                     onChange={(event) => handleSignedChange(clientIndex, projectIndex, monthIndex * weeks.length + weekIndex, event)}
                                     className="w-10 p-1 text-center border border-gray-300 rounded mb-[10px] text-xs rounded-[3px] text-[#23324C] text-left font-[400] text-[14px] leading-[17px] h-[25px] w-[34px] px-[15px] outline-[#27B5B0] focus:outline"
@@ -188,8 +191,9 @@ const StaffPlan = () => {
                                   <input
                                     style={{
                                       boxShadow: "rgba(0, 0, 0, 0.3) 0px 1px 1px inset",
+                                      padding:"0px"
                                     }}
-                                    type="text"
+                                    type="number"
                                     value={project.actual[monthIndex * weeks.length + weekIndex]}
                                     onChange={(event) => handleActualChange(clientIndex, projectIndex, monthIndex * weeks.length + weekIndex, event)}
                                     className="w-10 p-1 text-center border border-gray-300 rounded text-xs rounded-[3px] text-[#23324C] text-left font-[400] text-[14px] leading-[17px] h-[25px] w-[34px] px-[15px] outline-[#27B5B0] focus:outline"
@@ -199,14 +203,14 @@ const StaffPlan = () => {
                             </React.Fragment>
                           ))
                         )}
-                        <td className="text-[14px] font-[400] w-[100px] max-w-[100px] max-w-[100px] leading-[17px] text-left text-[#23324C] align-top px-[15px] py-[15px]">
+                        <td className="text-[14px] font-[400] w-[100px] max-w-[100px] leading-[17px] text-left text-[#23324C] align-top px-[15px] py-[15px]">
                           <div className="flex flex-col items-center">
                             <span className="mt-[4px]"> {project.rightField1}</span>
                             <br />
                             <span> {project.rightField2}</span>
                           </div>
                         </td>
-                        <td className="align-top text-right w-[100px] max-w-[100px] max-w-[100px] px-[15px] py-[15px] text-[14px] font-[400] leading-[17px] text-left text-[#23324C] align-top px-[15px] py-[15px]">
+                        <td className="align-top text-right w-[100px] max-w-[100px] px-[15px] py-[15px] text-[14px] font-[400] leading-[17px] text-left text-[#23324C]">
                           <img src={arc} alt="" className="w-[17px] h-[15px] cursor-pointer" />
                         </td>
                       </tr>

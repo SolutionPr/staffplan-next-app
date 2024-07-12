@@ -3,7 +3,7 @@ import SingleVerticalBarGraph from "../../chart/SingleVerticalBarGraph";
 
 function Header() {
   const [page, setPage] = useState("profile");
-  const signed = [633,624,475,475,475,475,458,590,590,590,590,590,590,590,630,630,630];
+  const signed = [63,24,45,75,45,75,58,59,90,50,80,40,59,52,63,68];
 
   return (
     <div>
@@ -26,7 +26,7 @@ function Header() {
                       <div className="flex flex-col items-center">
                         <SingleVerticalBarGraph
                           value={value}
-                          maxValue={1000}
+                          maxValue={100}
                           width="50px"
                           height="200px"
                           barColor={(index === 0||index === 1) ? "#E9EAF2" : "#27b5b0"}
